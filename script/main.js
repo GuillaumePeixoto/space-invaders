@@ -1,19 +1,28 @@
 // HTML Elements
 
-let mainMenuDivHTML = document.querySelector('#main-menu');
-let gameViewDivHTML = document.querySelector('#game-view');
-let endScreenDivHTML = document.querySelector('#end-screen');
-let scoreDivHTML = document.querySelector('#score');
+let mainMenuHTML = document.querySelector('#main-menu');
+let gameViewHTML = document.querySelector('#game-view');
+let gameScreen = document.querySelector('#game-screen');
+let invasionZone = document.querySelector('#invasion-zone');
+let enemyZone = document.querySelector('#enemy-zone');
+let endScreenHTML = document.querySelector('#end-screen');
+let scoreHTML = document.querySelector('#score');
 let playButton = document.querySelector('#play-button');
 let scoreButton = document.querySelector('#score-button');
 
 // Global variables
+let game = null;
+let player = null;
+
 
 // Global Functions
 
 function startGame(){
-    mainMenuDivHTML.style.display = "none";
-    gameViewDivHTML.style.display = "flex";
+    mainMenuHTML.style.display = "none";
+    gameViewHTML.style.display = "flex";
+    game = new Game();
+
+
 }
 
 // Event Listener
@@ -21,3 +30,13 @@ function startGame(){
 playButton.addEventListener('click', () => {
     startGame();
 });
+
+window.addEventListener('keydown', (event) => {
+    if(event.key === "ArrowLeft"){
+        game.player.moveToTheLeft();
+    }
+
+    if(event.key === "ArrowRight"){
+        game.player.moveToTheRight();
+    }
+})
