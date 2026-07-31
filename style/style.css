@@ -1,0 +1,101 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: url('../images/starscape.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* ----- Main Menu ----- */
+
+#main-menu{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#main-menu h2{
+    font-size: 5rem;
+    margin-top: 0px;
+}
+
+#main-menu button{
+    width: 200px;
+    height: 80px;
+    font-size: 24px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+#play-button{
+    background-color: #90EDE7;
+}
+
+#score-button{
+    background-color: #332045;
+    color: white;
+}
+
+
+/* Game view */
+
+#game-view{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#game-infos{
+    margin-bottom: 40px;
+}
+
+#game-infos h2{
+    font-size: 3rem;
+}
+
+#game-infos p{
+    text-align: center;
+    font-weight: bolder;
+}
+
+#game-screen{
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    width: 1200px;
+    height: 700px;
+    background: url('../images/game-background.jpg');
+    outline: 4px solid #f8fafc;
+}
+
+/* spaceship animation */
+
+.ship-wrap {
+  position: relative;
+}
+
+.ship-flame {
+  position: absolute;
+  bottom: -36px; /* ajuste pour placer la flamme sous le réacteur */
+  left: 102px;
+  transform: translateX(-50%);
+  animation: flame-pulse 0.9s ease-in-out infinite;
+}
+
+@keyframes flame-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+
+/*  */
+
+#game-view, #end-screen, #score{
+  display: none;
+}
