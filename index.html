@@ -10,20 +10,19 @@
     <main>
         <div id="main-menu">
             <h2>Space Invaders</h2>
-            <!-- <div class="ship-wrap">
-                <img src="images/Spaceship-flammes.png" class="ship-flame" alt="">
-                <img src="images/Spaceship.png" class="ship" alt="Vaisseau du joueur">
-            </div> -->
             <div>
-                <button id="play-button">Play</button>
+                <button id="play-button">
+                    <img class="img-button" src="images/Spaceship.png" alt="Spaceship">
+                    Play
+                </button>
                 <!-- <button>Custom game</button> -->
-                 <button id="score-button">Score</button>
+                 <button class="score-button">Score</button>
             </div>
         </div>
         <div id="game-view">
             <div id="game-infos">
                 <h2>Space invaders</h2>
-                <p>Score : <span id="scoreCount">0</span></p>
+                <p>Score : <span id="score-count">0</span></p>
             </div>
             <div id="game-screen">
                 <div id="invasion-zone">
@@ -34,7 +33,14 @@
             </div>
         </div>
         <div id="end-screen">
-
+            <h2>Game Over</h2>
+            <p>Your score : <span id="final-score">0</span></p>
+            <p>Level : <span id="final-level">0</span></p>
+            <div>
+                <button id="restart-button">Restart</button>
+                <!-- <button>Custom game</button> -->
+                 <button class="score-button">Score</button>
+            </div>
         </div>
         <div id="score">
             
@@ -46,5 +52,6 @@
     <script src="script/level.js"></script>
     <script src="script/game.js"></script>
     <script src="script/enemy-formation.js"></script>
+    <script src="script/bullet.js"></script>
 </body>
 </html>
