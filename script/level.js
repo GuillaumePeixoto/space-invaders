@@ -79,6 +79,7 @@ class Level {
     }
 
     startEnemyShooting(minDelay = 500, maxDelay = 1500, numberOfShots = 1) {
+        console.log('startEnemyShooting called');
         const delay = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay; // Random delay between minDelay and maxDelay
         const frontline = this.getFrontlineEnemies();
         const candidates = (frontline.length > 1 && this.lastShooter)
@@ -107,5 +108,21 @@ class Level {
 
     stopEnemyShooting() {
         clearTimeout(this.shootTimeoutId);
+    }
+
+    cleanUp() {
+        this.stopMovement();
+        this.stopEnemyShooting();
+        this.enemies.forEach((enemy) => enemy.destroy());
+        this.enemies = [];
+        this.enemiesBullets.forEach((bullet) => bullet.destroy());
+        this.enemiesBullets = [];
+        enemyZone.innerHTML = '';
+        enemyZone.style.transform = 'translateX(0px) translateY(0px)';
+    }
+
+    showLevelTransition(levelIndex) {
+        nextLevelMessage.textContent = `LEVEL ${levelIndex + 1}`;
+        nextLevelMessage.classList.add('is-active');
     }
 }

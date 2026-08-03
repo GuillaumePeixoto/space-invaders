@@ -3,7 +3,7 @@ class Game {
         this.currentLevelIndex = 0;
         this.maxDownEnemiesGo = 0; // Si valeur, on bloque, sinon on laisse les ennemis descendre jusqu'en bas de l'écran et atteindre le niveau du joueur alors game over
         this.player = new Player();
-        this.level = new Level(2, this.maxDownEnemiesGo);
+        this.level = new Level(this.currentLevelIndex, this.maxDownEnemiesGo);
         this.score = 0;
         this.loop = this.loop.bind(this);
     }
@@ -32,11 +32,20 @@ class Game {
     }
 
     startLevel(index) {
-        this.level = new Level(currentLevelIndex, this.maxDownEnemiesGo);
+        this.level = new Level(this.currentLevelIndex, this.maxDownEnemiesGo);
+        this.start();
     }
 
     nextLevel() {
-        this.startLevel(this.currentLevelIndex + 1);
+        this.level.cleanUp();
+        this.addScore(1000);
+        this.currentLevelIndex++;
+        this.level.showLevelTransition(this.currentLevelIndex);
+        setTimeout(() => {
+            nextLevelMessage.classList.remove('is-active');
+            this.startLevel(this.currentLevelIndex);
+        }, 2000);
+
     }
 
     loop() {
@@ -44,7 +53,10 @@ class Game {
         this.updateEnemiesBullets();
         this.checkPlayerBulletsCollisions();
         this.checkEnnemyBulletCollisions();
-        requestAnimationFrame(this.loop) ; // se relance à chaque frame, ~60 fois/seconde -> meilleur perf que setInterval et ne se mets pas en pause si l'onglet n'est pas actif
+        this.checkingEnemyRemaining();
+        if(this.level.enemies.length > 0) {
+            requestAnimationFrame(this.loop); // se relance à chaque frame, ~60 fois/seconde -> meilleur perf que setInterval et ne se mets pas en pause si l'onglet n'est pas actif
+        } 
     }
 
     updateEnemiesBullets() {
@@ -85,10 +97,11 @@ class Game {
             return !bullet.hit;
         });
 
-        this.level.enemies = this.level.enemies.filter((enemy) => {
+        this.level.enemies = this.level.enemies.filter((enemy, index) => {
             if (enemy.hit) {
                 enemy.destroy();
                 this.addScore(100);
+                this.level.enemies.splice(index, 0);
                 this.player.addKillForLazer();
             }
             return !enemy.hit;
@@ -103,6 +116,12 @@ class Game {
                 this.gameOver();
             }
         });
+    }
+
+    checkingEnemyRemaining() {
+        if (this.level.enemies.length === 0) {
+            this.nextLevel();
+        }
     }
 
 }
