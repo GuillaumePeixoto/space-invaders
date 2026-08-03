@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <title>Space Invaders</title>
 </head>
 <body>
@@ -30,6 +33,7 @@
 
                     </div>
                 </div>
+                <div id="level-transition"></div>
             </div>
         </div>
         <div id="end-screen">
@@ -43,7 +47,18 @@
             </div>
         </div>
         <div id="score">
-            
+            <h2>Highest Scores</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Level</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody id="score-table-body">
+                </tbody>
+            </table>
+            <button id="back-button">Back</button>
         </div>
     </main>
     <script src="script/main.js"></script>
@@ -53,5 +68,6 @@
     <script src="script/game.js"></script>
     <script src="script/enemy-formation.js"></script>
     <script src="script/bullet.js"></script>
+    <script src="script/score.js"></script>
 </body>
 </html>

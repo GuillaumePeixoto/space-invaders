@@ -28,7 +28,7 @@ class Game {
         endScreenHTML.style.display = "flex";
         endScreenScore.textContent = this.score;
         endScreenLevel.textContent = this.currentLevelIndex + 1;
-        Score.add(this.currentLevelIndex, this.score);
+        Score.add(this.currentLevelIndex + 1, this.score);
     }
 
     startLevel(index) {

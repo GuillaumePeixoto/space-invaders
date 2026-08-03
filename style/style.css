@@ -1,5 +1,7 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Audiowide", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   background: url("../images/starscape.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -10,7 +12,7 @@ body {
 
 /* ----- Main Menu ----- */
 
-#main-menu, #end-screen {
+#main-menu, #end-screen, #score {
   display: flex;
   flex-direction: column;
   color: white;
@@ -19,12 +21,12 @@ body {
   height: 100vh;
 }
 
-#main-menu h2, #end-screen h2 {
+h2 {
   font-size: 5rem;
   margin-top: 0px;
 }
 
-#main-menu button, #end-screen button {
+#main-menu button, #end-screen button, #score button {
   width: 200px;
   height: 80px;
   font-size: 24px;
@@ -36,7 +38,7 @@ body {
   cursor: pointer;
 }
 
-#main-menu div{
+#main-menu div, #end-screen div {
   display: flex;
   gap: 20px;
 }
@@ -127,7 +129,7 @@ body {
   visibility: hidden; /* garde sa place dans la grille, mais invisible */
 }
 
-/* spaceship animation */
+/* ---- spaceship animation ---- */
 
 .ship-wrap {
   position: relative;
@@ -156,7 +158,29 @@ body {
   }
 }
 
-/* ------ Score screen ------- */
+#level-transition {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+    pointer-events: none;
+    opacity: 0;
+}
+
+#level-transition.is-active {
+    animation: level-fade-out 2s ease-out forwards;
+}
+
+@keyframes level-fade-out {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* --- GameOver Screen --- */
 
 #end-screen p {
   font-size: 2rem;
@@ -172,10 +196,37 @@ body {
   margin-right: 10px;
 }
 
-#end-screen div{
-  margin-top: 20px;
+/* ------ Score screen ------- */
+
+#score h2 {
+  margin-bottom: 20px;
+
 }
 
+#score table {
+  width: 800px;
+  border-collapse: collapse;
+  border: 1px solid white;
+  margin-bottom: 30px;
+}
+
+#score tr {
+  border-bottom: 1px solid white;
+}
+
+#score tr td:first-of-type, #score tr th:first-of-type {
+  text-align: left;
+}
+
+#score tr td:last-of-type, #score tr th:last-of-type {
+  text-align: right;
+}
+
+#score th, #score td {
+  padding: 10px;
+  padding-left: 20px;
+  text-align: center;
+}
 
 /*  */
 
