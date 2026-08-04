@@ -12,7 +12,9 @@ body {
 
 /* ----- Main Menu ----- */
 
-#main-menu, #end-screen, #score {
+#main-menu,
+#end-screen,
+#score {
   display: flex;
   flex-direction: column;
   color: white;
@@ -26,7 +28,105 @@ h2 {
   margin-top: 0px;
 }
 
-#main-menu button, #end-screen button, #score button {
+#help-button{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 3rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  color: white;
+  background-color: transparent;
+  border: 4px solid white;
+  cursor: pointer;
+}
+
+#controls-popup {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: 650px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  
+  background: #0a0a1a;
+  border: 2px solid #0ff;
+  border-radius: 8px;
+  padding: 16px 20px;
+  min-width: 220px;
+  z-index: 100;
+  
+  box-shadow: 
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    inset 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.popup-head{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#close-help-popup{
+  cursor: pointer;
+  border: none;
+  color: red;
+  font-weight: bold;
+  background-color: transparent;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+#controls-popup .popup-head h3{
+  margin: 0px;
+}
+
+#storytelling{
+  line-height: 30px;
+}
+
+#commands-table{
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid white;
+}
+
+#commands-table tr {
+  border-bottom: 1px solid white;
+}
+
+#commands-table td, #commands-table th{
+  padding: 10px;
+  width: 50%;
+}
+
+#commands-table tr td:first-of-type,
+#commands-table tr th:first-of-type {
+  text-align: left;
+  border-right: 1px solid white;
+}
+
+#commands-table tr td:last-of-type,
+#commands-table tr th:last-of-type {
+  text-align: right;
+}
+
+#controls-popup.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+#main-menu div.buttons-group button,
+#end-screen div.buttons-group button,
+#score button {
   width: 200px;
   height: 80px;
   font-size: 24px;
@@ -38,15 +138,37 @@ h2 {
   cursor: pointer;
 }
 
-#main-menu div, #end-screen div {
+#main-menu div.buttons-group,
+#end-screen div.buttons-group {
   display: flex;
   gap: 20px;
 }
 
 #play-button {
   background-color: #223769;
-  color: white;
+  color: #316fff;
   position: relative;
+
+  border: 2px solid #1c3e8d;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  box-shadow:
+    0 0 5px #1a52d4,
+    0 0 10px #1a52d4,
+    0 0 20px #1a52d4;
+  transition:
+    box-shadow 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+#play-button:hover {
+  box-shadow:
+    0 0 8px #1a52d4,
+    0 0 16px #1a52d4,
+    0 0 20px #1a52d4,
+    0 0 30px #1a52d4;
+  text-shadow: 0 0 5px #1a52d4;
 }
 
 #play-button:hover .img-button {
@@ -54,7 +176,7 @@ h2 {
   left: 50px;
 }
 
-.img-button{
+.img-button {
   height: 40px;
   width: 40px;
   left: 30px;
@@ -64,10 +186,29 @@ h2 {
   transition: 0.5s ease-in-out;
 }
 
-
 .score-button {
   background-color: #332045;
-  color: white;
+  color: #8557b1;
+  border: 2px solid #8557b1;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  box-shadow:
+    0 0 5px #8557b1,
+    0 0 10px #8557b1,
+    0 0 20px #8557b1;
+  transition:
+    box-shadow 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+.score-button:hover {
+  box-shadow:
+    0 0 8px #8557b1,
+    0 0 16px #8557b1,
+    0 0 20px #8557b1,
+    0 0 30px #8557b1;
+  text-shadow: 0 0 5px #8557b1;
 }
 
 /* Game view */
@@ -159,25 +300,62 @@ h2 {
 }
 
 #level-transition {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 5rem;
-    font-weight: bold;
-    letter-spacing: 0.1em;
-    color: var(--text-light);
-    pointer-events: none;
-    opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  color: var(--text-light);
+  pointer-events: none;
+  opacity: 0;
 }
 
 #level-transition.is-active {
-    animation: level-fade-out 2s ease-out forwards;
+  animation: level-fade-out 2s ease-out forwards;
 }
 
 @keyframes level-fade-out {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#lazer-item {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  align-items: center;
+  font-size: 1.5rem;
+  color: var(--text-light);
+  width: 60px;
+  height: 60px;
+}
+
+#lazer-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#lazer-item p {
+  position: absolute;
+  top: 17px;
+  right: 8px;
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+.lazer {
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top center;
+  transition: height 0.05s linear; /* optionnel, pour lisser le changement de hauteur */
 }
 
 /* --- GameOver Screen --- */
@@ -200,7 +378,6 @@ h2 {
 
 #score h2 {
   margin-bottom: 20px;
-
 }
 
 #score table {
@@ -216,15 +393,18 @@ h2 {
   border-bottom: 1px solid #8c5eff;
 }
 
-#score tr td:first-of-type, #score tr th:first-of-type {
+#score tr td:first-of-type,
+#score tr th:first-of-type {
   text-align: left;
 }
 
-#score tr td:last-of-type, #score tr th:last-of-type {
+#score tr td:last-of-type,
+#score tr th:last-of-type {
   text-align: right;
 }
 
-#score th, #score td {
+#score th,
+#score td {
   padding: 10px;
   padding-left: 20px;
   text-align: center;
@@ -234,6 +414,24 @@ h2 {
   border: 1px solid #8c5eff;
   background-color: #1a1033;
   color: #f4ecff;
+  border: 2px solid #ab8aff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  box-shadow:
+    0 0 5px #ab8aff,
+    0 0 10px #ab8aff,
+    0 0 20px #ab8aff;
+  transition:
+    box-shadow 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+#score button:hover {
+  box-shadow:
+    0 0 8px #ab8aff,
+    0 0 16px #ab8aff,
+    0 0 20px #ab8aff,
+    0 0 30px #ab8aff;
 }
 
 /*  */

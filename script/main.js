@@ -1,6 +1,7 @@
 // HTML Elements
 
 let mainMenuHTML = document.querySelector('#main-menu');
+let helpPopup = document.querySelector('#controls-popup');
 
 let gameViewHTML = document.querySelector('#game-view');
 let gameScreen = document.querySelector('#game-screen');
@@ -17,6 +18,8 @@ let backButton = document.querySelector('#back-button');
 let playButton = document.querySelector('#play-button');
 let scoreButtons = document.querySelectorAll('.score-button');
 let restartButton = document.querySelector('#restart-button');
+let helpButton = document.querySelector('#help-button');
+let closePopupButton = document.querySelector('#close-help-popup');
 
 let endScreenHTML = document.querySelector('#end-screen');
 let endScreenScore = document.querySelector('#final-score');
@@ -96,6 +99,14 @@ scoreButtons.forEach((button) => {
 backButton.addEventListener('click', () => {
     scoreHTML.style.display = "none";
     mainMenuHTML.style.display = "flex";
+});
+
+helpButton.addEventListener('click', () => {
+  helpPopup.classList.toggle('visible');
+});
+
+closePopupButton.addEventListener('click', () => {
+  helpPopup.classList.remove('visible');
 });
 
 window.addEventListener('keydown', (event) => {

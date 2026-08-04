@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,17 +10,63 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <title>Space Invaders</title>
 </head>
+
 <body>
     <main>
         <div id="main-menu">
+            <button id="help-button">?</button>
             <h2>Space Invaders</h2>
-            <div>
+            <div class="buttons-group">
                 <button id="play-button">
                     <img class="img-button" src="images/Spaceship.png" alt="Spaceship">
                     Play
                 </button>
                 <!-- <button>Custom game</button> -->
-                 <button class="score-button">Score</button>
+                <button class="score-button">Score</button>
+            </div>
+            <div id="controls-popup">
+                <div class="popup-head">
+                    <h3>Welcome to Space Invaders</h3>
+                    <button id="close-help-popup">X</button>
+                </div>
+                <p id="storytelling">
+                    EARTH DEFENSE FORCE — MISSION BRIEFING
+                    <br>
+                    The alien invasion fleet has entered the atmosphere.
+                    <br>
+                    Wave after wave, they advance — closing in from above.
+                    <br>
+                    You are the last line of defense.
+                    <br>
+                    DESTROY THEM ALL.
+                </p>
+                <h3>Commandes</h3>
+                <table id="commands-table">
+                    <thead>
+                        <tr>
+                            <th>Keyboard Key</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>←</td>
+                            <td>Moving to the left</td>
+                        </tr>
+                        <tr>
+                            <td>→</td>
+                            <td>Moving to the right</td>
+                        </tr>
+                        <tr>
+                            <td>Space bar</td>
+                            <td>Shoot</td>
+                        </tr>
+                        <tr>
+                            <td>X</td>
+                            <td>Special weapon : Orbital laser</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div id="game-view">
@@ -44,10 +91,10 @@
             <h2>Game Over</h2>
             <p>Your score : <span id="final-score">0</span></p>
             <p>Level : <span id="final-level">0</span></p>
-            <div>
+            <div class="buttons-group">
                 <button id="restart-button">Restart</button>
                 <!-- <button>Custom game</button> -->
-                 <button class="score-button">Score</button>
+                <button class="score-button">Score</button>
             </div>
         </div>
         <div id="score">
@@ -75,4 +122,5 @@
     <script src="script/score.js"></script>
     <script src="script/lazer.js"></script>
 </body>
+
 </html>
