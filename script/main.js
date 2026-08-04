@@ -101,10 +101,6 @@ difficultyButtons.forEach((button) => {
     });
 });
 
-// playButton.addEventListener('click', () => {
-//     startGame();
-// });
-
 restartButton.addEventListener('click', () => {
     startGame();
 });
@@ -120,6 +116,8 @@ scoreButtons.forEach((button) => {
 
 backButton.addEventListener('click', () => {
     scoreHTML.style.display = "none";
+    difficultyChoices.style.display = "none";
+    mainMenuButtons.style.display = "flex";
     mainMenuHTML.style.display = "flex";
 });
 
