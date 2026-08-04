@@ -206,12 +206,14 @@ h2 {
 #score table {
   width: 800px;
   border-collapse: collapse;
-  border: 1px solid white;
+  border: 1px solid #8c5eff;
   margin-bottom: 30px;
+  background-color: #1a1033;
+  color: #f4ecff;
 }
 
 #score tr {
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #8c5eff;
 }
 
 #score tr td:first-of-type, #score tr th:first-of-type {
@@ -226,6 +228,12 @@ h2 {
   padding: 10px;
   padding-left: 20px;
   text-align: center;
+}
+
+#score button {
+  border: 1px solid #8c5eff;
+  background-color: #1a1033;
+  color: #f4ecff;
 }
 
 /*  */
