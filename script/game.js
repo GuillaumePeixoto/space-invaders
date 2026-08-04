@@ -1,7 +1,7 @@
 class Game {
     constructor() {
         this.currentLevelIndex = 0;
-        this.maxDownEnemiesGo = 0; // Si valeur, on bloque, sinon on laisse les ennemis descendre jusqu'en bas de l'écran et atteindre le niveau du joueur alors game over
+        this.maxDownEnemiesGo = null; // Si valeur, on bloque, sinon on laisse les ennemis descendre jusqu'en bas de l'écran et atteindre le niveau du joueur alors game over
         this.player = new Player();
         this.level = new Level(this.currentLevelIndex, this.maxDownEnemiesGo);
         this.score = 0;
@@ -52,11 +52,12 @@ class Game {
         this.updateBullets();
         this.updateEnemiesBullets();
         this.checkPlayerBulletsCollisions();
+        this.checkLazerCollisions();
         this.checkEnnemyBulletCollisions();
         this.checkingEnemyRemaining();
-        if(this.level.enemies.length > 0) {
+        if (this.level.enemies.length > 0) {
             requestAnimationFrame(this.loop); // se relance à chaque frame, ~60 fois/seconde -> meilleur perf que setInterval et ne se mets pas en pause si l'onglet n'est pas actif
-        } 
+        }
     }
 
     updateEnemiesBullets() {
@@ -101,7 +102,35 @@ class Game {
             if (enemy.hit) {
                 enemy.destroy();
                 this.addScore(100);
-                this.level.enemies.splice(index, 0);
+                console.log('Enemy destroyed, remaining enemies:', this.level.enemies.length);
+                this.player.addKillForLazer();
+            }
+            return !enemy.hit;
+        });
+    }
+
+    checkLazerCollisions() {
+        if (!this.level || !this.player.activeLazer) return;
+
+        const lazer = this.player.activeLazer;
+
+        console.log('Checking lazer collisions with enemies:', this.level.enemies.length);
+
+        this.level.enemies.forEach((enemy) => {
+            if (enemy.hit) return;
+            console.log('Enemy position:', enemy.x, enemy.y);
+            lazer.refreshX();
+            console.log('Lazer position:', lazer.x, lazer.y, lazer.width);
+            if (isColliding(lazer, enemy)) {
+                enemy.hit = true;
+                console.log('Enemy hit by lazer:', enemy);
+            }
+        });
+
+        this.level.enemies = this.level.enemies.filter((enemy) => {
+            if (enemy.hit) {
+                enemy.destroy();
+                this.addScore(100);
                 this.player.addKillForLazer();
             }
             return !enemy.hit;
