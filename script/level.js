@@ -8,16 +8,23 @@ class Level {
 
         this.offsetY = 0;
         this.offsetX = 0;
-        this.step = 20;
-        this.stepDown = 20;
+        this.step = difficultyParams.step;
+        this.stepDown = difficultyParams.stepDown;
         this.reverseMouvement = false;
-        this.currentDelay = 800; // delai entre les mouvements des ennemis, en ms
+        this.currentDelay = difficultyParams.currentDelay; // delai entre les mouvements des ennemis, en ms
+        this.enemyShootingSameTme = difficultyParams.enemyShootingSameTme;
         this.moveTimeoutId = null;
         this.shootTimeoutId = null;
+        this.minDelay = difficultyParams.minDelay;
+        this.maxDelay = difficultyParams.maxDelay;
+
+        if(indexLevel >= formations.length){
+            // finished the game
+        }
 
         this.renderFormation();
         this.startMovement();
-        this.startEnemyShooting(500, 1500);
+        this.startEnemyShooting();
     }
 
     startMovement() {
@@ -78,9 +85,8 @@ class Level {
         });
     }
 
-    startEnemyShooting(minDelay = 500, maxDelay = 1500, numberOfShots = 1) {
-        console.log('startEnemyShooting called');
-        const delay = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay; // Random delay between minDelay and maxDelay
+    startEnemyShooting() {
+        const delay = Math.floor(Math.random() * (this.maxDelay - this.minDelay + 1)) + this.minDelay; // Random delay between minDelay and maxDelay
         const frontline = this.getFrontlineEnemies();
         const candidates = (frontline.length > 1 && this.lastShooter)
             ? frontline.filter((enemy) => enemy.col !== this.lastShooter.col || enemy.row !== this.lastShooter.row)
@@ -91,7 +97,7 @@ class Level {
 
             let selectedEnemies = [];
 
-            const actualCount = Math.min(numberOfShots, candidates.length);
+            const actualCount = Math.min(this.enemyShootingSameTme, candidates.length);
 
             for (let i = 0; i < actualCount; i++) {
                 const index = Math.floor(Math.random() * candidates.length);
@@ -102,7 +108,7 @@ class Level {
                 this.lastShooter = shooter;
             }
 
-            this.startEnemyShooting(minDelay, maxDelay, numberOfShots);
+            this.startEnemyShooting();
         }, delay);
     }
 

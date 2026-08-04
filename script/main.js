@@ -1,7 +1,10 @@
 // HTML Elements
 
 let mainMenuHTML = document.querySelector('#main-menu');
+let difficultyChoices = document.querySelector('#choose-difficulty');
+let difficultyButtons = document.querySelectorAll('.difficulty-buttons');
 let helpPopup = document.querySelector('#controls-popup');
+let mainMenuButtons = document.querySelector('.buttons-group');
 
 let gameViewHTML = document.querySelector('#game-view');
 let gameScreen = document.querySelector('#game-screen');
@@ -28,7 +31,8 @@ let endScreenLevel = document.querySelector('#final-level');
 // Global variables
 let game = null;
 let player = null;
-
+let difficulty = null;
+let difficultyParams = null;
 
 // Global Functions
 
@@ -38,7 +42,7 @@ function startGame(){
     scoreHTML.style.display = "none";
     endScreenHTML.style.display = "none";
     gameViewHTML.style.display = "flex";
-    game = new Game();
+    game = new Game(difficultyParams);
     game.start();
 }
 
@@ -80,8 +84,26 @@ function cleaningGameScreen() {
 // Event Listener
 
 playButton.addEventListener('click', () => {
-    startGame();
+    mainMenuButtons.style.display = "none";
+    difficultyChoices.style.display = "flex";
 });
+
+difficultyButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+        difficulty = button.getAttribute('difficulty');
+        difficultyParams = diffilculties[difficulty];
+        console.log(difficulty);
+        if(difficulty === 'custom'){
+
+        }else{
+            startGame();
+        }
+    });
+});
+
+// playButton.addEventListener('click', () => {
+//     startGame();
+// });
 
 restartButton.addEventListener('click', () => {
     startGame();

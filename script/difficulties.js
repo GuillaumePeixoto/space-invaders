@@ -1,0 +1,38 @@
+const diffilculties = {
+    'easy': {
+        'maxDownEnemiesGo': 0,
+        'scoreMultiplicator': 1,
+        'step': 20,
+        'stepDown': 20,
+        'currentDelay': 800,
+        'laserMaxCharge': 4,
+        'shootCooldown': 300,
+        'enemyShootingSameTme': 1,
+        'minDelay': 500,
+        'maxDelay': 1500,
+    },
+    'medium': {
+        'maxDownEnemiesGo': 120,
+        'scoreMultiplicator': 2,
+        'step': 20,
+        'stepDown': 20,
+        'currentDelay': 700,
+        'laserMaxCharge': 3,
+        'shootCooldown': 400,
+        'enemyShootingSameTme': 2,
+        'minDelay': 300,
+        'maxDelay': 1200,
+    },
+    'hard': {
+        'maxDownEnemiesGo': null,
+        'scoreMultiplicator': 4,
+        'step': 30,
+        'stepDown': 30,
+        'currentDelay': 600,
+        'laserMaxCharge': 2,
+        'shootCooldown': 500,
+        'enemyShootingSameTme': 3,
+        'minDelay': 500,
+        'maxDelay': 1000,
+    }
+}

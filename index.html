@@ -16,6 +16,12 @@
         <div id="main-menu">
             <button id="help-button">?</button>
             <h2>Space Invaders</h2>
+            <div id="choose-difficulty">
+                <button class="difficulty-buttons" difficulty="easy">Easy</button>
+                <button class="difficulty-buttons" difficulty="medium">Medium</button>
+                <button class="difficulty-buttons" difficulty="hard">Hard</button>
+                <button class="difficulty-buttons" difficulty="custom">Custom</button>
+            </div>
             <div class="buttons-group">
                 <button id="play-button">
                     <img class="img-button" src="images/Spaceship.png" alt="Spaceship">
@@ -117,10 +123,12 @@
     <script src="script/enemy.js"></script>
     <script src="script/level.js"></script>
     <script src="script/game.js"></script>
-    <script src="script/enemy-formation.js"></script>
     <script src="script/bullet.js"></script>
     <script src="script/score.js"></script>
     <script src="script/laser.js"></script>
+    <!-- Values -->
+    <script src="script/enemy-formation.js"></script>
+    <script src="script/difficulties.js"></script>
 </body>
 
 </html>

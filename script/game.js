@@ -1,15 +1,16 @@
 class Game {
     constructor() {
         this.currentLevelIndex = 0;
-        this.maxDownEnemiesGo = null; // Si valeur, on bloque, sinon on laisse les ennemis descendre jusqu'en bas de l'écran et atteindre le niveau du joueur alors game over
+        this.maxDownEnemiesGo = difficultyParams.maxDownEnemiesGo; // Si valeur, on bloque, sinon on laisse les ennemis descendre jusqu'en bas de l'écran et atteindre le niveau du joueur alors game over
         this.player = new Player();
         this.level = new Level(this.currentLevelIndex, this.maxDownEnemiesGo);
         this.score = 0;
+        this.scoreMultiplicator = difficultyParams.scoreMultiplicator;
         this.loop = this.loop.bind(this);
     }
 
     addScore(points) {
-        this.score += points;
+        this.score += points * this.scoreMultiplicator;
         scoreCount.textContent = this.score;
     }
 

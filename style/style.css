@@ -28,6 +28,108 @@ h2 {
   margin-top: 0px;
 }
 
+#choose-difficulty{
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#choose-difficulty button{
+  cursor: pointer;
+  font-family: "Audiowide", sans-serif;
+  color: #f8fafc;
+  letter-spacing: 1px;
+  position: relative;
+  border-radius: 8px;
+  padding: 24px 50px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#choose-difficulty button[difficulty='easy']{
+  background-color: #226928;
+  border: 2px solid #2db934;
+  box-shadow:
+    0 0 5px #2db934,
+    0 0 10px #2db934,
+    0 0 20px #2db934;
+  transition:
+    box-shadow 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+#choose-difficulty button[difficulty='easy']:hover {
+  box-shadow:
+    0 0 8px #2db934,
+    0 0 16px #2db934,
+    0 0 20px #2db934,
+    0 0 30px #2db934;
+  text-shadow: 0 0 5px #2db934;
+}
+
+#choose-difficulty button[difficulty='medium']{
+  background-color: #8d721b;
+  border: 2px solid #c08008;
+  box-shadow:
+    0 0 5px #c08008,
+    0 0 10px #c08008,
+    0 0 20px #c08008;
+  transition:
+    box-shadow 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+#choose-difficulty button[difficulty='medium']:hover {
+  box-shadow:
+    0 0 8px #c08008,
+    0 0 16px #c08008,
+    0 0 20px #c08008,
+    0 0 30px #c08008;
+  text-shadow: 0 0 5px #c08008;
+}
+
+#choose-difficulty button[difficulty='hard']{
+  background-color: #8d3024;
+  border: 2px solid #bb1313;
+  box-shadow:
+    0 0 5px #bb1313,
+    0 0 10px #bb1313,
+    0 0 20px #bb1313;
+  transition:
+    box-shadow 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+#choose-difficulty button[difficulty='hard']:hover {
+  box-shadow:
+    0 0 8px #bb1313,
+    0 0 16px #bb1313,
+    0 0 20px #bb1313,
+    0 0 30px #bb1313;
+  text-shadow: 0 0 5px #bb1313;
+}
+
+#choose-difficulty button[difficulty='custom']{
+  background-color: #45216e;
+  border: 2px solid #6c28bb;
+  box-shadow:
+    0 0 5px #6c28bb,
+    0 0 10px #6c28bb,
+    0 0 20px #6c28bb;
+  transition:
+    box-shadow 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+#choose-difficulty button[difficulty='custom']:hover {
+  box-shadow:
+    0 0 8px #6c28bb,
+    0 0 16px #6c28bb,
+    0 0 20px #6c28bb,
+    0 0 30px #6c28bb;
+  text-shadow: 0 0 5px #6c28bb;
+}
+
 #help-button{
   position: absolute;
   top: 10px;
