@@ -7,9 +7,9 @@ class Score {
         return raw ? JSON.parse(raw) : [];
     }
 
-    static add(level, score) {
+    static add(level, score, difficulty) {
         const scores = this.getAll();
-        scores.push({ level, score });
+        scores.push({ level, difficulty, score });
         scores.sort((a, b) => b.score - a.score);
         const top10 = scores.slice(0, this.MAX_ENTRIES);
         localStorage.setItem(this.KEY, JSON.stringify(top10));
@@ -23,6 +23,7 @@ class Score {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${score.level}</td>
+                <td>${score.difficulty ?? 'Custom'}</td>
                 <td>${score.score}</td>
             `;
             tableBody.appendChild(row);
