@@ -9,8 +9,8 @@ let invasionZone = document.querySelector('#invasion-zone');
 let enemyZone = document.querySelector('#enemy-zone');
 let scoreCount = document.querySelector('#score-count');
 let nextLevelMessage = document.querySelector('#level-transition');
-let lazerCount = document.querySelector('#lazer-count');
-let lazerIcon = document.querySelector('#lazer-item');
+let laserCount = document.querySelector('#laser-count');
+let laserIcon = document.querySelector('#laser-item');
 
 let scoreHTML = document.querySelector('#score');
 
@@ -123,6 +123,6 @@ window.addEventListener('keydown', (event) => {
     }
 
     if(event.code === "KeyX"){
-        game.player.lazer();
+        game.player.laser();
     }
 })

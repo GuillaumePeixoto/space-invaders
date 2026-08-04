@@ -6,9 +6,9 @@ class Player {
         gameScreen.append(this.node);
 
         this.score = 0;
-        this.activeLazer = null;
-        this.lazerCharge = 0;
-        this.lazerMaxCharge = 2;
+        this.activeLaser = null;
+        this.laserCharge = 0;
+        this.laserMaxCharge = 2;
         this.height = 40;
         this.width = 40;
         this.x = (gameScreen.offsetWidth / 2) - (this.width / 2);
@@ -51,37 +51,37 @@ class Player {
         this.bullets.push(bullet);
     }
 
-    addKillForLazer() {
+    addKillForLaser() {
         this.killCount++;
         if (this.killCount === 10) {
-            this.rechargeLazer();
-            this.refreshLazerCount();
+            this.rechargeLaser();
+            this.refreshLaserCount();
             this.killCount = 0;
         }
     }
 
-    refreshLazerCount() {
-        lazerCount.textContent = this.lazerCharge;
+    refreshLaserCount() {
+        laserCount.textContent = this.laserCharge;
     }
 
-    rechargeLazer() {
-        if (this.lazerCharge < this.lazerMaxCharge) {
-            this.lazerCharge += 1;
-            this.refreshLazerCount()
+    rechargeLaser() {
+        if (this.laserCharge < this.laserMaxCharge) {
+            this.laserCharge += 1;
+            this.refreshLaserCount()
         }
     }
 
-    lazer() {
-        if (this.lazerCharge < 1) {
+    laser() {
+        if (this.laserCharge < 1) {
             return;
         }
 
-        const widthLazer = 50;
-        const newLazer = new Lazer(this, widthLazer);
-        newLazer.fire();
-        this.activeLazer = newLazer;
+        const widthLaser = 50;
+        const newLaser = new Laser(this, widthLaser);
+        newLaser.fire();
+        this.activeLaser = newLaser;
 
-        this.lazerCharge -= 1;
-        this.refreshLazerCount();
+        this.laserCharge -= 1;
+        this.refreshLaserCount();
     }
 }

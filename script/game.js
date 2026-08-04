@@ -52,7 +52,7 @@ class Game {
         this.updateBullets();
         this.updateEnemiesBullets();
         this.checkPlayerBulletsCollisions();
-        this.checkLazerCollisions();
+        this.checkLaserCollisions();
         this.checkEnnemyBulletCollisions();
         this.checkingEnemyRemaining();
         if (this.level.enemies.length > 0) {
@@ -103,27 +103,25 @@ class Game {
                 enemy.destroy();
                 this.addScore(100);
                 console.log('Enemy destroyed, remaining enemies:', this.level.enemies.length);
-                this.player.addKillForLazer();
+                this.player.addKillForLaser();
             }
             return !enemy.hit;
         });
     }
 
-    checkLazerCollisions() {
-        if (!this.level || !this.player.activeLazer) return;
+    checkLaserCollisions() {
+        if (!this.level || !this.player.activeLaser) return;
 
-        const lazer = this.player.activeLazer;
+        const laser = this.player.activeLaser;
 
-        console.log('Checking lazer collisions with enemies:', this.level.enemies.length);
+        console.log('Checking laser collisions with enemies:', this.level.enemies.length);
 
         this.level.enemies.forEach((enemy) => {
             if (enemy.hit) return;
-            console.log('Enemy position:', enemy.x, enemy.y);
-            lazer.refreshX();
-            console.log('Lazer position:', lazer.x, lazer.y, lazer.width);
-            if (isColliding(lazer, enemy)) {
+            laser.refreshX();
+            if (isColliding(laser, enemy)) {
                 enemy.hit = true;
-                console.log('Enemy hit by lazer:', enemy);
+                console.log('Enemy hit by laser:', enemy);
             }
         });
 
@@ -131,7 +129,7 @@ class Game {
             if (enemy.hit) {
                 enemy.destroy();
                 this.addScore(100);
-                this.player.addKillForLazer();
+                this.player.addKillForLaser();
             }
             return !enemy.hit;
         });

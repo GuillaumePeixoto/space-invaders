@@ -1,4 +1,4 @@
-class Lazer {
+class Laser {
     constructor(player) {
         this.player = player;
         this.width = 30;
@@ -8,10 +8,10 @@ class Lazer {
         this.element = this.createElement('div');
 
         this.frames = [
-            { src: 'lazer-frame1.png', height: 20 },
-            { src: 'lazer-frame2.png', height: 35 },
-            { src: 'lazer-frame3.png', height: 50 },
-            { src: 'lazer-frame4.png', height: this.y },
+            { src: 'laser-frame1.png', height: 20 },
+            { src: 'laser-frame2.png', height: 35 },
+            { src: 'laser-frame3.png', height: 50 },
+            { src: 'laser-frame4.png', height: this.y },
         ];
     }
 
@@ -29,7 +29,7 @@ class Lazer {
         node.style.left = `${this.x}px`;
         node.style.top = `${this.y}px`;
         node.style.width = `${this.width}px`;
-        node.classList.add('lazer');
+        node.classList.add('laser');
         gameScreen.append(node);
         return node;
     }
@@ -63,14 +63,14 @@ class Lazer {
     }
 
     destroyEnemiesInPath() {
-        const lazerLeft = this.x;
-        const lazerRight = lazerLeft + this.width;
+        const laserLeft = this.x;
+        const laserRight = laserLeft + this.width;
 
         enemies.forEach((enemy) => {
             const enemyLeft = enemy.x;
             const enemyRight = enemy.x + enemy.width;
 
-            const isHit = enemyLeft < lazerRight && enemyRight > lazerLeft;
+            const isHit = enemyLeft < laserRight && enemyRight > laserLeft;
 
             if (isHit) {
                 enemy.destroy();
@@ -80,6 +80,6 @@ class Lazer {
 
     remove() {
         this.element.remove();
-        this.player.activeLazer = null;
+        this.player.activeLaser = null;
     }
 }
