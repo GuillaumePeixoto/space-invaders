@@ -56,6 +56,7 @@ class Game {
         this.checkLaserCollisions();
         this.checkEnnemyBulletCollisions();
         this.checkingEnemyRemaining();
+        this.checkingEnemyReachPlayer();
         if (this.level.enemies.length > 0) {
             requestAnimationFrame(this.loop); // se relance à chaque frame, ~60 fois/seconde -> meilleur perf que setInterval et ne se mets pas en pause si l'onglet n'est pas actif
         }
@@ -144,6 +145,17 @@ class Game {
                 this.gameOver();
             }
         });
+    }
+
+    checkingEnemyReachPlayer(){
+        if(this.maxDownEnemiesGo < this.player.y && this.maxDownEnemiesGo != null){
+            return;
+        }
+        this.level.enemies.forEach((enemy) => {
+            if(enemy.y + enemy.height >= this.player.y){
+                this.gameOver();
+            }
+        })
     }
 
     checkingEnemyRemaining() {
