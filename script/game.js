@@ -29,7 +29,7 @@ class Game {
         endScreenHTML.style.display = "flex";
         endScreenScore.textContent = this.score;
         endScreenLevel.textContent = this.currentLevelIndex + 1;
-        Score.add(this.currentLevelIndex + 1, this.score, difficulty);
+        Storage.addScore(this.currentLevelIndex + 1, this.score, difficulty);
     }
 
     startLevel(index) {
@@ -104,7 +104,6 @@ class Game {
             if (enemy.hit) {
                 enemy.destroy();
                 this.addScore(100);
-                console.log('Enemy destroyed, remaining enemies:', this.level.enemies.length);
                 this.player.addKillForLaser();
             }
             return !enemy.hit;
@@ -116,14 +115,11 @@ class Game {
 
         const laser = this.player.activeLaser;
 
-        console.log('Checking laser collisions with enemies:', this.level.enemies.length);
-
         this.level.enemies.forEach((enemy) => {
             if (enemy.hit) return;
             laser.refreshX();
             if (isColliding(laser, enemy)) {
                 enemy.hit = true;
-                console.log('Enemy hit by laser:', enemy);
             }
         });
 

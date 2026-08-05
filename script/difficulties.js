@@ -1,4 +1,4 @@
-const diffilculties = {
+const difficulties = {
     'easy': {
         'maxDownEnemiesGo': 0,
         'scoreMultiplicator': 1,

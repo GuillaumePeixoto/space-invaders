@@ -10,6 +10,11 @@ body {
   padding: 0;
 }
 
+button {
+  cursor: pointer;
+  font-family: "Audiowide", sans-serif;
+}
+
 /* ----- Main Menu ----- */
 
 #main-menu,
@@ -28,15 +33,15 @@ h2 {
   margin-top: 0px;
 }
 
-#choose-difficulty{
+/* ----- Difficulty Buttons */
+
+#choose-difficulty {
   display: none;
   flex-direction: column;
   gap: 20px;
 }
 
-#choose-difficulty button{
-  cursor: pointer;
-  font-family: "Audiowide", sans-serif;
+#choose-difficulty button {
   color: #f8fafc;
   letter-spacing: 1px;
   position: relative;
@@ -46,7 +51,7 @@ h2 {
   font-weight: bold;
 }
 
-#choose-difficulty button[difficulty='easy']{
+#choose-difficulty button[difficulty="easy"] {
   background-color: #226928;
   border: 2px solid #2db934;
   box-shadow:
@@ -58,7 +63,7 @@ h2 {
     text-shadow 0.3s ease;
 }
 
-#choose-difficulty button[difficulty='easy']:hover {
+#choose-difficulty button[difficulty="easy"]:hover {
   box-shadow:
     0 0 8px #2db934,
     0 0 16px #2db934,
@@ -67,7 +72,7 @@ h2 {
   text-shadow: 0 0 5px #2db934;
 }
 
-#choose-difficulty button[difficulty='medium']{
+#choose-difficulty button[difficulty="medium"] {
   background-color: #8d721b;
   border: 2px solid #c08008;
   box-shadow:
@@ -79,7 +84,7 @@ h2 {
     text-shadow 0.3s ease;
 }
 
-#choose-difficulty button[difficulty='medium']:hover {
+#choose-difficulty button[difficulty="medium"]:hover {
   box-shadow:
     0 0 8px #c08008,
     0 0 16px #c08008,
@@ -88,7 +93,7 @@ h2 {
   text-shadow: 0 0 5px #c08008;
 }
 
-#choose-difficulty button[difficulty='hard']{
+#choose-difficulty button[difficulty="hard"] {
   background-color: #8d3024;
   border: 2px solid #bb1313;
   box-shadow:
@@ -100,7 +105,7 @@ h2 {
     text-shadow 0.3s ease;
 }
 
-#choose-difficulty button[difficulty='hard']:hover {
+#choose-difficulty button[difficulty="hard"]:hover {
   box-shadow:
     0 0 8px #bb1313,
     0 0 16px #bb1313,
@@ -109,7 +114,7 @@ h2 {
   text-shadow: 0 0 5px #bb1313;
 }
 
-#choose-difficulty button[difficulty='custom']{
+#choose-difficulty button[difficulty="custom"] {
   background-color: #45216e;
   border: 2px solid #6c28bb;
   box-shadow:
@@ -121,7 +126,7 @@ h2 {
     text-shadow 0.3s ease;
 }
 
-#choose-difficulty button[difficulty='custom']:hover {
+#choose-difficulty button[difficulty="custom"]:hover {
   box-shadow:
     0 0 8px #6c28bb,
     0 0 16px #6c28bb,
@@ -130,8 +135,194 @@ h2 {
   text-shadow: 0 0 5px #6c28bb;
 }
 
-#help-button{
+/* ---- Custom Difficulty Form */
+
+#custom-difficulty {
+  display: none;
+  flex-direction: column;
+}
+
+#custom-difficulty-content{
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  gap: 30px;
+}
+
+#saved-difficulties-list{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  row-gap: 10px;
+}
+
+.saved-difficulties{
+  padding: 10px;
+  font-size: 1.25rem;
+  color: white;
+  border-radius: 10px;
+  border: 2px solid #1f51b4;
+  background-color: #0f2b64;
+  transition: box-shadow 0.3s ease;
+}
+
+.saved-difficulties:hover{
+  box-shadow:
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    inset 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+#back-to-choose-difficulty{
+  display: flex;
+  margin: auto;
+  margin-top: 40px;
+}
+
+#custom-difficulty-saved {
+  width: 20%;
+  border: 2px solid #0ff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow:
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff;
+  background-color: #0a0a1a;
+}
+
+#custom-difficulty-saved h3 {
+  margin-top: 0px;
+}
+
+#custom-difficulty-form {
+  width: 80%;
+  border: 2px solid #0ff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow:
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff;
+  background-color: #0a0a1a;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.field input[type="number"] {
+  display: flex;
+  margin: auto;
+  padding: 4px;
+  border-radius: 7px;
+}
+
+.field-header {
+  margin-bottom: 10px;
+}
+
+.field-range-labels {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+#saveCustomDifficulty,
+#playCustomDifficulty {
+  display: flex;
+  margin: auto;
+  border-radius: 8px;
+  padding: 20px 46px;
+  font-size: 1.5rem;
+  color: white;
+}
+
+#saveCustomDifficulty {
+  background: #0f2b64;
+  border: 1px solid #2350ac;
+  transition: box-shadow 0.3s ease;
+}
+
+#saveCustomDifficulty:hover {
+  box-shadow:
+    0 0 8px #2350ac,
+    0 0 12px #2350ac,
+    0 0 16px #2350ac,
+    0 0 20px #2350ac;
+}
+
+#playCustomDifficulty {
+  background: rgb(22, 102, 102);
+  border: 1px solid #26a0a0;
+  transition: box-shadow 0.3s ease;
+}
+
+#playCustomDifficulty:hover {
+  box-shadow:
+    0 0 8px #26a0a0,
+    0 0 12px #26a0a0,
+    0 0 16px #26a0a0,
+    0 0 20px #26a0a0;
+}
+
+.tooltip-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-trigger {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--purple);
+  background: transparent;
+  color: var(--text-light);
+  font-size: 11px;
+  line-height: 1;
+  cursor: help;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tooltip-bubble {
   position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  width: max-content;
+  max-width: 220px;
+  padding: 8px 10px;
+  background: var(--score-bg, #1a1033);
+  border: 1px solid var(--purple);
+  border-radius: 6px;
+  color: var(--text-light);
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: left;
+
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+  z-index: 10;
+}
+
+.tooltip-trigger:hover + .tooltip-bubble,
+.tooltip-trigger:focus + .tooltip-bubble {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ----- Popup game infos */
+
+#help-button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 10px;
   right: 10px;
   font-size: 3rem;
@@ -141,7 +332,6 @@ h2 {
   color: white;
   background-color: transparent;
   border: 4px solid white;
-  cursor: pointer;
 }
 
 #controls-popup {
@@ -152,30 +342,31 @@ h2 {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+
   background: #0a0a1a;
   border: 2px solid #0ff;
   border-radius: 8px;
   padding: 16px 20px;
   min-width: 220px;
   z-index: 100;
-  
-  box-shadow: 
+
+  box-shadow:
     0 0 10px #0ff,
     0 0 20px #0ff,
     inset 0 0 10px rgba(0, 255, 255, 0.2);
 }
 
-.popup-head{
+.popup-head {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-#close-help-popup{
-  cursor: pointer;
+#close-help-popup {
   border: none;
   color: red;
   font-weight: bold;
@@ -185,15 +376,15 @@ h2 {
   height: 30px;
 }
 
-#controls-popup .popup-head h3{
+#controls-popup .popup-head h3 {
   margin: 0px;
 }
 
-#storytelling{
+#storytelling {
   line-height: 30px;
 }
 
-#commands-table{
+#commands-table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid white;
@@ -203,7 +394,8 @@ h2 {
   border-bottom: 1px solid white;
 }
 
-#commands-table td, #commands-table th{
+#commands-table td,
+#commands-table th {
   padding: 10px;
   width: 50%;
 }
@@ -228,7 +420,7 @@ h2 {
 
 #main-menu div.buttons-group button,
 #end-screen div.buttons-group button,
-#score button {
+#score button, .purple-buttons {
   width: 200px;
   height: 80px;
   font-size: 24px;
@@ -237,7 +429,6 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 }
 
 #main-menu div.buttons-group,
@@ -275,7 +466,7 @@ h2 {
 
 #play-button:hover .img-button {
   opacity: 1;
-  left: 50px;
+  left: 45px;
 }
 
 .img-button {
@@ -512,12 +703,10 @@ h2 {
   text-align: center;
 }
 
-#score button {
-  border: 1px solid #8c5eff;
+.purple-buttons {
   background-color: #1a1033;
   color: #f4ecff;
   border: 2px solid #ab8aff;
-  border-radius: 8px;
   padding: 10px 20px;
   box-shadow:
     0 0 5px #ab8aff,
@@ -528,7 +717,7 @@ h2 {
     text-shadow 0.3s ease;
 }
 
-#score button:hover {
+.purple-buttons:hover {
   box-shadow:
     0 0 8px #ab8aff,
     0 0 16px #ab8aff,

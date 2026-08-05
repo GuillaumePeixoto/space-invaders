@@ -22,6 +22,164 @@
                 <button class="difficulty-buttons" difficulty="hard">Hard</button>
                 <button class="difficulty-buttons" difficulty="custom">Custom</button>
             </div>
+            <div id="custom-difficulty">
+                <div id="custom-difficulty-content">
+                    <div id="custom-difficulty-saved">
+                        <h3>Saved Difficulties</h3>
+                        <div id="saved-difficulties-list">
+                            <!-- Saved Difficulties -->
+                        </div>
+                    </div>
+                    <form id="custom-difficulty-form" method="post" action="">
+                        <div class="field">
+                            <div class="field-header">
+                                <label for="maxDownEnemiesGo">Nombre de descentes max (pixels)</label>
+                                <span class="tooltip-wrap">
+                                    <button type="button" class="tooltip-trigger"
+                                        aria-describedby="tip-currentDelay">?</button>
+                                    <span class="tooltip-bubble" id="tip-currentDelay" role="tooltip">
+                                        Empty = Enemies going down with no limit.<br>
+                                        0 = They never go down.<br>
+                                        Other Numbers = They go down without ever exceeding the limit.
+                                    </span>
+                                </span>
+                            </div>
+
+                            <input type="number" aria-describedby="maxDownEnemiesGoDesc" name="maxDownEnemiesGo"
+                                id="maxDownEnemiesGo" placeholder="No limits" min="0" step="5" max="800">
+                        </div>
+
+                        <div class="field">
+                            <div class="field-header">
+                                <label for="enemyShootingSameTme">Maximum enemies can shot at the same time :</label>
+                                <output class="field-value" for="enemyShootingSameTme">1</output>
+                            </div>
+                            <div class="field-range-labels">
+                                <span>1</span>
+                                <input type="range" min="1" max="8" step="1" name="enemyShootingSameTme"
+                                    id="enemyShootingSameTme" value="1">
+                                <span>8</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="field-header">
+                                <label for="scoreMultiplicator">Score multiplier :</label>
+                                <output class="field-value" for="scoreMultiplicator">1</output>
+                            </div>
+                            <div class="field-range-labels">
+                                <span>1</span>
+                                <input type="range" min="1" max="10" step="1" name="scoreMultiplicator"
+                                    id="scoreMultiplicator" value="1">
+                                <span>10</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="field-header">
+                                <label for="step">Vitesse horizontale :</label>
+                                <output class="field-value" for="step">20</output>
+                            </div>
+                            <p class="field-desc">Distance parcourue à chaque déplacement des ennemis.</p>
+                            <div class="field-range-labels">
+                                <span>5</span>
+                                <input type="range" min="5" max="40" step="5" name="step" id="step" value="20">
+                                <span>40</span>
+                            </div>
+                        </div>
+
+
+                        <div class="field">
+                            <div class="field-header">
+                                <label for="minDelay">Minimum time between enemies shots :</label>
+                                <output class="field-value" for="minDelay">500</output>
+                            </div>
+                            <div class="field-range-labels">
+                                <span>100</span>
+                                <input type="range" min="100" max="1000" step="100" name="minDelay" id="minDelay"
+                                    value="500">
+                                <span>1000</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="field-header">
+                                <label for="laserMaxCharge">Maximum laser charges :</label>
+                                <output class="field-value" for="laserMaxCharge">2</output>
+                            </div>
+                            <div class="field-range-labels">
+                                <span>1</span>
+                                <input type="range" min="1" max="10" step="1" name="laserMaxCharge" id="laserMaxCharge"
+                                    value="2">
+                                <span>10</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="field-header">
+                                <label for="stepDown">Vitesse Vertical :</label>
+                                <output class="field-value" for="stepDown">20</output>
+                            </div>
+                            <p class="field-desc">Distance parcourue à chaque déplacement des ennemis.</p>
+                            <div class="field-range-labels">
+                                <span>5</span>
+                                <input type="range" min="5" max="40" step="5" name="stepDown" id="stepDown" value="20">
+                                <span>40</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="field-header">
+                                <label for="maxDelay">Maximum time between enemies shots :</label>
+                                <output class="field-value" for="maxDelay">1500</output>
+                            </div>
+                            <div class="field-range-labels">
+                                <span>200</span>
+                                <input type="range" min="200" max="2000" step="100" name="maxDelay" id="maxDelay"
+                                    value="1500">
+                                <span>2000</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="field-header">
+                                <label for="shootCooldown">Cooldown between player's shots :</label>
+                                <output class="field-value" for="shootCooldown">500</output>
+                            </div>
+                            <div class="field-range-labels">
+                                <span>100</span>
+                                <input type="range" min="100" max="1000" step="100" name="shootCooldown"
+                                    id="shootCooldown" value="500">
+                                <span>1000</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="field-header">
+                                <label for="currentDelay">Delay Between Enemies movements :</label>
+                                <output class="field-value" for="currentDelay">20</output>
+                            </div>
+                            <div class="field-range-labels">
+                                <span>100</span>
+                                <input type="range" min="100" max="1000" step="100" name="currentDelay"
+                                    id="currentDelay" value="500">
+                                <span>1000</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <button type="submit" id="saveCustomDifficulty" name="action" value="save">Save</button>
+                        </div>
+                        <div class="field">
+                            <button type="submit" id="playCustomDifficulty" name="action" value="play">Play</button>
+                        </div>
+
+                    </form>
+                </div>
+                <div>
+                    <button id="back-to-choose-difficulty" class="purple-buttons">Back</button>
+                </div>
+            </div>
             <div class="buttons-group">
                 <button id="play-button">
                     <img class="img-button" src="images/Spaceship.png" alt="Spaceship">
@@ -116,7 +274,7 @@
                 <tbody id="score-table-body">
                 </tbody>
             </table>
-            <button id="back-button">Back</button>
+            <button id="back-button" class="purple-buttons">Back</button>
         </div>
     </main>
     <script src="script/main.js"></script>
@@ -125,7 +283,7 @@
     <script src="script/level.js"></script>
     <script src="script/game.js"></script>
     <script src="script/bullet.js"></script>
-    <script src="script/score.js"></script>
+    <script src="script/storage.js"></script>
     <script src="script/laser.js"></script>
     <!-- Values -->
     <script src="script/enemy-formation.js"></script>
