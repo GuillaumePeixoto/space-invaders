@@ -51,7 +51,7 @@ class Laser {
             if (frameIndex < this.frames.length) {
                 setTimeout(animateFrame, 100);
             } else {
-                // setTimeout(() => this.remove(), 200);
+                setTimeout(() => this.remove(), 200);
             }
         };
 
