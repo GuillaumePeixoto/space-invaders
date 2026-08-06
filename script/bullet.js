@@ -15,6 +15,9 @@ class Bullet {
     this.shoot.style.top = `${this.y}px`;
     this.shoot.style.background = direction === -1 ? '#d9a441' : '#ff0000'; // ou la couleur que tu veux
     this.shoot.style.borderRadius = '2px';
+    if(direction === -1){
+      play('sounds/Laser1.mp3')
+    }
 
     gameScreen.appendChild(this.shoot);
   }

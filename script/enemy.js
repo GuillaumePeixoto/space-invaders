@@ -29,7 +29,7 @@ class Enemy {
 
     destroy() {
         this.enemyNode.src = './images/explosion.gif';
-
+        play('sounds/explosion.mp3');
         setTimeout(() => {
             this.enemyNode.remove();
         }, 200);

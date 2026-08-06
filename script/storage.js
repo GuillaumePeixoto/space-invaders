@@ -93,15 +93,9 @@ class Storage {
         const storage = this.getAll();
         const difficulties = storage.difficulties;
         if(difficulties.length > 0){
+            localDifficultiesContainer.innerHTML = ""
             difficulties.forEach((difficulty) => {
                 localDifficultiesContainer.innerHTML += `<button class='saved-difficulties' value='${difficulty.name}'>${difficulty.name}</button>`;
-            });
-
-            document.querySelector('#saved-difficulties-list').addEventListener('click', (event) => {
-                if (event.target.classList.contains('saved-difficulties')) {
-                    const name = event.target.value;
-                    applyDifficultyToForm(name);
-                }
             });
         }
 

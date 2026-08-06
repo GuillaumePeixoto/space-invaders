@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/images/Spaceship.png">
     <link rel="stylesheet" href="style/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +13,20 @@
 </head>
 
 <body>
-    <main>
+    <main> 
+        <div id="soundRegulation">
+            <button id="toggleSounds" onclick="toggleEnableSounds()">
+                🔊
+            </button>
+            <div id="volume-range">
+                <div>
+                    <label for="soundVolume">Volume : </label>
+                    <output for="soundVolume">50</output>
+                </div>
+                
+                <input type="range" name="soundVolume" id="soundVolume" min="0" value="50" max="100">
+            </div>
+        </div>
         <div id="main-menu">
             <button id="help-button">?</button>
             <h2>Space Invaders</h2>
@@ -21,6 +35,7 @@
                 <button class="difficulty-buttons" difficulty="medium">Medium</button>
                 <button class="difficulty-buttons" difficulty="hard">Hard</button>
                 <button class="difficulty-buttons" difficulty="custom">Custom</button>
+                <button id="back-to-main-menu" class="purple-buttons">Back</button>
             </div>
             <div id="custom-difficulty">
                 <div id="custom-difficulty-content">
@@ -33,7 +48,7 @@
                     <form id="custom-difficulty-form" method="post" action="">
                         <div class="field">
                             <div class="field-header">
-                                <label for="maxDownEnemiesGo">Nombre de descentes max (pixels)</label>
+                                <label for="maxDownEnemiesGo">Max descent limit (pixels)</label>
                                 <span class="tooltip-wrap">
                                     <button type="button" class="tooltip-trigger"
                                         aria-describedby="tip-currentDelay">?</button>
@@ -77,8 +92,9 @@
 
                         <div class="field">
                             <div class="field-header">
-                                <label for="step">Vitesse horizontale :</label>
+                                <label for="step">Horizontal speed :</label>
                                 <output class="field-value" for="step">20</output>
+                                <span>pixels</span>
                             </div>
                             <p class="field-desc">Distance parcourue à chaque déplacement des ennemis.</p>
                             <div class="field-range-labels">
@@ -93,6 +109,7 @@
                             <div class="field-header">
                                 <label for="minDelay">Minimum time between enemies shots :</label>
                                 <output class="field-value" for="minDelay">500</output>
+                                <span>ms</span>
                             </div>
                             <div class="field-range-labels">
                                 <span>100</span>
@@ -117,8 +134,9 @@
 
                         <div class="field">
                             <div class="field-header">
-                                <label for="stepDown">Vitesse Vertical :</label>
+                                <label for="stepDown">Vertical speed :</label>
                                 <output class="field-value" for="stepDown">20</output>
+                                <span>pixels</span>
                             </div>
                             <p class="field-desc">Distance parcourue à chaque déplacement des ennemis.</p>
                             <div class="field-range-labels">
@@ -132,6 +150,7 @@
                             <div class="field-header">
                                 <label for="maxDelay">Maximum time between enemies shots :</label>
                                 <output class="field-value" for="maxDelay">1500</output>
+                                <span>ms</span>
                             </div>
                             <div class="field-range-labels">
                                 <span>200</span>
@@ -145,6 +164,7 @@
                             <div class="field-header">
                                 <label for="shootCooldown">Cooldown between player's shots :</label>
                                 <output class="field-value" for="shootCooldown">500</output>
+                                <span>ms</span>
                             </div>
                             <div class="field-range-labels">
                                 <span>100</span>
@@ -158,6 +178,7 @@
                             <div class="field-header">
                                 <label for="currentDelay">Delay Between Enemies movements :</label>
                                 <output class="field-value" for="currentDelay">20</output>
+                                <span>ms</span>
                             </div>
                             <div class="field-range-labels">
                                 <span>100</span>
@@ -237,6 +258,7 @@
             <div id="game-infos">
                 <h2>Space invaders</h2>
                 <p>Score : <span id="score-count">0</span></p>
+                <audio src="sounds/Laser1.mp3"></audio>
             </div>
             <div id="game-screen">
                 <div id="invasion-zone">

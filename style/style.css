@@ -33,6 +33,40 @@ h2 {
   margin-top: 0px;
 }
 
+/* ----- Volume ------ */
+
+#soundRegulation{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgb(227, 236, 236);
+  border: 2px solid #1a52d4;
+  box-shadow:
+    0 0 5px #1a52d4,
+    0 0 10px #1a52d4,
+    0 0 20px #1a52d4;
+  border-radius: 50px;
+  display: flex;
+  padding: 10px 20px;
+  column-gap: 10px ;
+}
+
+#soundRegulation button{
+  background-color: transparent;
+  border: none;
+  font-size: 1.25rem;
+}
+
+#volume-range{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#volume-range div{
+  text-align: center;
+}
+
 /* ----- Difficulty Buttons */
 
 #choose-difficulty {
@@ -133,6 +167,10 @@ h2 {
     0 0 20px #6c28bb,
     0 0 30px #6c28bb;
   text-shadow: 0 0 5px #6c28bb;
+}
+
+#back-to-main-menu{
+  margin-top: 40px;
 }
 
 /* ---- Custom Difficulty Form */
@@ -323,7 +361,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 10px;
+  bottom: 10px;
   right: 10px;
   font-size: 3rem;
   width: 60px;
@@ -420,7 +458,7 @@ h2 {
 
 #main-menu div.buttons-group button,
 #end-screen div.buttons-group button,
-#score button, .purple-buttons {
+#score button {
   width: 200px;
   height: 80px;
   font-size: 24px;
@@ -727,10 +765,16 @@ h2 {
 }
 
 .purple-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #1a1033;
   color: #f4ecff;
+  font-weight: bold;
   border: 2px solid #ab8aff;
-  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 24px;
+  padding: 24px 50px;
   box-shadow:
     0 0 5px #ab8aff,
     0 0 10px #ab8aff,

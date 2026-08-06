@@ -4,9 +4,14 @@ let mainMenuHTML = document.querySelector('#main-menu');
 let difficultyChoices = document.querySelector('#choose-difficulty');
 let difficultyButtons = document.querySelectorAll('.difficulty-buttons');
 let helpPopup = document.querySelector('#controls-popup');
-let customDifficultyForm = document.querySelector('#custom-difficulty');
+
+let customDifficulty = document.querySelector('#custom-difficulty');
+let customDifficultyForm = document.querySelector('#custom-difficulty-form');
 let localDifficultiesContainer = document.querySelector('#saved-difficulties-list');
 let mainMenuButtons = document.querySelector('.buttons-group');
+
+let toggleSoundButton = document.querySelector('#toggleSounds');
+let volumeRangeBar = document.querySelector('#soundVolume');
 
 let gameViewHTML = document.querySelector('#game-view');
 let gameScreen = document.querySelector('#game-screen');
@@ -19,7 +24,6 @@ let laserIcon = document.querySelector('#laser-item');
 
 let scoreHTML = document.querySelector('#score');
 
-let backButton = document.querySelector('#back-button');
 let playButton = document.querySelector('#play-button');
 let scoreButtons = document.querySelectorAll('.score-button');
 let restartButton = document.querySelector('#restart-button');
@@ -30,11 +34,18 @@ let endScreenHTML = document.querySelector('#end-screen');
 let endScreenScore = document.querySelector('#final-score');
 let endScreenLevel = document.querySelector('#final-level');
 
+let backButtonToDifficulty = document.querySelector('#back-to-choose-difficulty');
+let backButtonFromDifficuity = document.querySelector('#back-to-main-menu');
+let backButtonFromScore = document.querySelector('#back-button');
+
+
 // Global variables
 let game = null;
 let player = null;
 let difficulty = "Custom not saved";
 let difficultyParams = null;
+let enableSounds = true;
+let VOLUME = 0.5;
 
 const DIFFICULTIES_RULES = {
     maxDownEnemiesGo: { min: 0, max: 800, step: 5, allowNull: true },
@@ -161,10 +172,22 @@ function saveDifficulty(formValues){
     let newDifficultyName = Storage.addDifficulty(sanitizedDifficulty);
     localDifficultiesContainer.innerHTML += `<button class='saved-difficulties' value='${newDifficultyName}'>${newDifficultyName}</button>`;
     difficulty = newDifficultyName;
-    // document.querySelector(`.saved-difficulties[value="${newDifficultyName}"]`).addEventListener('click', (event) => {
-    //     const key = event.currentTarget.value;
-    //     applyDifficultyToForm(key);
-    // });
+}
+
+function play(src) {
+    if (!enableSounds) return;
+    const audio = new Audio(src);
+    audio.volume = VOLUME;
+    audio.play();
+}
+
+function toggleEnableSounds(){
+    enableSounds = !enableSounds;
+    if(enableSounds){
+        toggleSoundButton.textContent = "🔊";
+    }else{
+        toggleSoundButton.textContent = "🔇";
+    }
 }
 
 // Event Listener
@@ -180,7 +203,7 @@ difficultyButtons.forEach((button) => {
         difficultyParams = difficulties[difficulty];
         if (difficulty === 'custom') {
             difficultyChoices.style.display = "none";
-            customDifficultyForm.style.display = "flex";
+            customDifficulty.style.display = "flex";
             Storage.renderDifficulties()
         } else {
             startGame();
@@ -188,7 +211,28 @@ difficultyButtons.forEach((button) => {
     });
 });
 
-document.querySelector('#custom-difficulty-form').addEventListener('submit', (event) => {
+document.querySelector('#saved-difficulties-list').addEventListener('click', (event) => {
+    if (event.target.classList.contains('saved-difficulties')) {
+        const name = event.target.value;
+        applyDifficultyToForm(name);
+    }
+});
+
+volumeRangeBar.addEventListener('input', (event) => {
+    const output = document.querySelector(`output[for="soundVolume"]`);
+    let volumeValue = parseInt(event.target.value);
+    output.textContent = volumeValue;
+    VOLUME = volumeValue / 100;
+    if(volumeValue === 0){
+        toggleSoundButton.textContent = "🔇";
+        enableSounds = false;
+    }else{
+        toggleSoundButton.textContent = "🔊";
+        enableSounds = true;
+    }
+});
+
+customDifficultyForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target, event.submitter);
@@ -232,10 +276,27 @@ scoreButtons.forEach((button) => {
     });
 });
 
-backButton.addEventListener('click', () => {
+backButtonFromScore.addEventListener('click', () => {
     scoreHTML.style.display = "none";
     difficultyChoices.style.display = "none";
+    customDifficulty.style.display = "none";
     mainMenuButtons.style.display = "flex";
+    mainMenuHTML.style.display = "flex";
+});
+
+backButtonFromDifficuity.addEventListener('click', () => {
+    scoreHTML.style.display = "none";
+    difficultyChoices.style.display = "none";
+    customDifficulty.style.display = "none";
+    mainMenuButtons.style.display = "flex";
+    mainMenuHTML.style.display = "flex";
+});
+
+backButtonToDifficulty.addEventListener('click', () => {
+    scoreHTML.style.display = "none";
+    customDifficulty.style.display = "none";
+    mainMenuButtons.style.display = "none";
+    difficultyChoices.style.display = "flex";
     mainMenuHTML.style.display = "flex";
 });
 
