@@ -28,6 +28,10 @@ class Enemy {
     }
 
     destroy() {
-        this.enemyNode.remove();
+        this.enemyNode.src = './images/explosion.gif';
+
+        setTimeout(() => {
+            this.enemyNode.remove();
+        }, 200);
     }
 }
