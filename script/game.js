@@ -7,6 +7,7 @@ class Game {
         this.score = 0;
         this.scoreMultiplicator = difficultyParams.scoreMultiplicator;
         this.loop = this.loop.bind(this);
+        this.music = play('sounds/music1.mp3', false);
     }
 
     addScore(points) {
@@ -19,7 +20,7 @@ class Game {
         // this.intervalId = setInterval(this.loop, 1000/60); // Remplacé par requestAnimationFrame car plus performant et plus fluide
     }
 
-    gameOver() {
+    gameOver(titleContent, win = false) {
         this.level.stopMovement();
         this.level.stopEnemyShooting();
         this.player.bullets.filter((bullet) => {
@@ -27,9 +28,12 @@ class Game {
         });
         gameViewHTML.style.display = "none";
         endScreenHTML.style.display = "flex";
+        gameOverTitle.textContent = titleContent;
         endScreenScore.textContent = this.score;
         endScreenLevel.textContent = this.currentLevelIndex + 1;
-        Storage.addScore(this.currentLevelIndex + 1, this.score, difficulty);
+        this.music.pause();
+        win ? play('sounds/game_over_sound.mp3') : play('sounds/game_over_sound.mp3') ;
+        Storage.saveScore(this.currentLevelIndex + 1, this.score, difficulty);
     }
 
     startLevel(index) {
@@ -40,6 +44,10 @@ class Game {
     nextLevel() {
         this.level.cleanUp();
         this.addScore(1000);
+        if(formations.length <= this.currentLevelIndex + 1 ){
+            this.gameOver('You win');
+            return;
+        }
         this.currentLevelIndex++;
         this.level.showLevelTransition(this.currentLevelIndex);
         setTimeout(() => {
@@ -138,7 +146,7 @@ class Game {
             if (bullet.hit) return;
             if (isColliding(bullet, this.player)) {
                 bullet.hit = true;
-                this.gameOver();
+                this.gameOver('Game Over');
             }
         });
     }
@@ -149,7 +157,7 @@ class Game {
         }
         this.level.enemies.forEach((enemy) => {
             if(enemy.y + enemy.height >= this.player.y){
-                this.gameOver();
+                this.gameOver('Game Over');
             }
         })
     }

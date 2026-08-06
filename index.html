@@ -13,19 +13,37 @@
 </head>
 
 <body>
-    <main> 
+    <main>
         <div id="soundRegulation">
-            <button id="toggleSounds" onclick="toggleEnableSounds()">
-                🔊
-            </button>
-            <div id="volume-range">
-                <div>
-                    <label for="soundVolume">Volume : </label>
-                    <output for="soundVolume">50</output>
+            <div class="sound-volume-lines">
+                <span>Effects</span>
+                <button id="toggle-sounds-effect" onclick="toggleEnableSounds()">
+                    🔊
+                </button>
+                <div id="volume-range">
+                    <div>
+                        <label for="sound-effect-volume">Volume : </label>
+                        <output for="sound-effect-volume">50</output>
+                    </div>
+
+                    <input type="range" name="sound-effect-volume" id="sound-effect-volume" min="0" value="50" max="100">
                 </div>
-                
-                <input type="range" name="soundVolume" id="soundVolume" min="0" value="50" max="100">
             </div>
+            <div class="sound-volume-lines">
+                <span>Song</span>
+                <button id="toggle-songs-effect" onclick="toggleEnableSongs()">
+                    🔊
+                </button>
+                <div id="volume-range">
+                    <div>
+                        <label for="sound-song-volume">Volume : </label>
+                        <output for="sound-song-volume">50</output>
+                    </div>
+
+                    <input type="range" name="sound-song-volume" id="sound-song-volume" min="0" value="50" max="100">
+                </div>
+            </div>
+
         </div>
         <div id="main-menu">
             <button id="help-button">?</button>
@@ -274,7 +292,7 @@
             </div>
         </div>
         <div id="end-screen">
-            <h2>Game Over</h2>
+            <h2 id="game-over">Game Over</h2>
             <p>Your score : <span id="final-score">0</span></p>
             <p>Level : <span id="final-level">0</span></p>
             <div class="buttons-group">

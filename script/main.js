@@ -10,8 +10,10 @@ let customDifficultyForm = document.querySelector('#custom-difficulty-form');
 let localDifficultiesContainer = document.querySelector('#saved-difficulties-list');
 let mainMenuButtons = document.querySelector('.buttons-group');
 
-let toggleSoundButton = document.querySelector('#toggleSounds');
-let volumeRangeBar = document.querySelector('#soundVolume');
+let toggleSoundEffectButton = document.querySelector('#toggle-sounds-effect');
+let volumeEffectRangeBar = document.querySelector('#sound-effect-volume');
+let toggleSoundSongButton = document.querySelector('#toggle-songs-effect');
+let volumeSongRangeBar = document.querySelector('#sound-song-volume');
 
 let gameViewHTML = document.querySelector('#game-view');
 let gameScreen = document.querySelector('#game-screen');
@@ -33,6 +35,7 @@ let closePopupButton = document.querySelector('#close-help-popup');
 let endScreenHTML = document.querySelector('#end-screen');
 let endScreenScore = document.querySelector('#final-score');
 let endScreenLevel = document.querySelector('#final-level');
+let gameOverTitle = document.querySelector('#game-over');
 
 let backButtonToDifficulty = document.querySelector('#back-to-choose-difficulty');
 let backButtonFromDifficuity = document.querySelector('#back-to-main-menu');
@@ -44,8 +47,12 @@ let game = null;
 let player = null;
 let difficulty = "Custom not saved";
 let difficultyParams = null;
-let enableSounds = true;
-let VOLUME = 0.5;
+let enableSoundsEffect = true;
+let EFFECT_VOLUME = 0.5;
+let enableSoundsSong = true;
+let SONG_VOLUME = 0.5;
+
+
 
 const DIFFICULTIES_RULES = {
     maxDownEnemiesGo: { min: 0, max: 800, step: 5, allowNull: true },
@@ -101,6 +108,8 @@ function cleaningGameScreen() {
     if (game && game.player && game.player.node) {
         game.player.node.remove();
     }
+
+    laserCount.textContent = '0';
 
     // remettre le texte de transition à zéro, au cas où
     const transitionEl = document.querySelector('#level-transition');
@@ -167,26 +176,39 @@ function applyDifficultyToForm(difficultyKey) {
     });
 }
 
-function saveDifficulty(formValues){
+function addSavedDifficulty(formValues){
     let sanitizedDifficulty = sanitizeCustomDifficultyEntries(formValues);
-    let newDifficultyName = Storage.addDifficulty(sanitizedDifficulty);
+    let newDifficultyName = Storage.saveDifficulty(sanitizedDifficulty);
     localDifficultiesContainer.innerHTML += `<button class='saved-difficulties' value='${newDifficultyName}'>${newDifficultyName}</button>`;
     difficulty = newDifficultyName;
 }
 
-function play(src) {
-    if (!enableSounds) return;
+function play(src, effect = true) {
+    if (!enableSoundsEffect) return;
     const audio = new Audio(src);
-    audio.volume = VOLUME;
+    audio.volume = effect ? EFFECT_VOLUME : SONG_VOLUME;
+    if(!effect){
+        bgMusic.loop = true;
+    }
     audio.play();
+    return audio;
 }
 
 function toggleEnableSounds(){
-    enableSounds = !enableSounds;
-    if(enableSounds){
-        toggleSoundButton.textContent = "🔊";
+    enableSoundsEffect = !enableSoundsEffect;
+    if(enableSoundsEffect){
+        toggleSoundEffectButton.textContent = "🔊";
     }else{
-        toggleSoundButton.textContent = "🔇";
+        toggleSoundEffectButton.textContent = "🔇";
+    }
+}
+
+function toggleEnableSongs(){
+    enableSoundsSong = !enableSoundsSong;
+    if(enableSoundsSong){
+        toggleSoundSongButton.textContent = "🔊";
+    }else{
+        toggleSoundSongButton.textContent = "🔇";
     }
 }
 
@@ -218,17 +240,34 @@ document.querySelector('#saved-difficulties-list').addEventListener('click', (ev
     }
 });
 
-volumeRangeBar.addEventListener('input', (event) => {
-    const output = document.querySelector(`output[for="soundVolume"]`);
+volumeEffectRangeBar.addEventListener('input', (event) => {
+    const output = document.querySelector(`output[for="sound-effect-volume"]`);
     let volumeValue = parseInt(event.target.value);
     output.textContent = volumeValue;
-    VOLUME = volumeValue / 100;
+    EFFECT_VOLUME = volumeValue / 100;
     if(volumeValue === 0){
-        toggleSoundButton.textContent = "🔇";
-        enableSounds = false;
+        toggleSoundEffectButton.textContent = "🔇";
+        enableSoundsEffect = false;
     }else{
-        toggleSoundButton.textContent = "🔊";
-        enableSounds = true;
+        toggleSoundEffectButton.textContent = "🔊";
+        enableSoundsEffect = true;
+    }
+});
+
+volumeSongRangeBar.addEventListener('input', (event) => {
+    const output = document.querySelector(`output[for="sound-song-volume"]`);
+    let volumeValue = parseInt(event.target.value);
+    output.textContent = volumeValue;
+    SONG_VOLUME = volumeValue / 100;
+    if(game){
+        game.music.volume = SONG_VOLUME;
+    }
+    if(volumeValue === 0){
+        toggleSoundSongButton.textContent = "🔇";
+        enableSoundsSong = false;
+    }else{
+        toggleSoundSongButton.textContent = "🔊";
+        enableSoundsSong = true;
     }
 });
 
@@ -240,7 +279,7 @@ customDifficultyForm.addEventListener('submit', (event) => {
     const action = values.action;
     delete values.action;
     if (action === "save") {
-        saveDifficulty(values);
+        addSavedDifficulty(values);
     } else if (action === "play") {
         difficultyParams = sanitizeCustomDifficultyEntries(values)
         startGame();

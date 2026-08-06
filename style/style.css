@@ -63,8 +63,10 @@ h2 {
     0 0 5px #1a52d4,
     0 0 10px #1a52d4,
     0 0 20px #1a52d4;
-  border-radius: 50px;
+  border-radius: 20px;
   display: flex;
+  flex-direction: column;
+  row-gap: 10px;
   padding: 10px 20px;
   column-gap: 10px ;
 }
@@ -73,6 +75,13 @@ h2 {
   background-color: transparent;
   border: none;
   font-size: 1.25rem;
+}
+
+.sound-volume-lines{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
 }
 
 #volume-range{
@@ -570,6 +579,7 @@ h2 {
 }
 
 #game-infos {
+  margin-top: 100px;
   margin-bottom: 40px;
 }
 

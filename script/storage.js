@@ -30,7 +30,7 @@ class Storage {
         }
     }
 
-    static addScore(level, score, difficulty) {
+    static saveScore(level, score, difficulty) {
         let storage = this.getAll();
         let scores = storage.scores ? storage.scores : [];
         scores.push({ level, difficulty, score });
@@ -40,7 +40,7 @@ class Storage {
         localStorage.setItem(this.KEY, JSON.stringify(storage));
     }
 
-    static addDifficulty(difficultyParameters) {
+    static saveDifficulty(difficultyParameters) {
         let storage = this.getAll();
         let difficulties = storage.difficulties;
         const difficultyName = `custom-${difficulties.length}`;
