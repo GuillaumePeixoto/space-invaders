@@ -31,6 +31,24 @@ button {
 h2 {
   font-size: 5rem;
   margin-top: 0px;
+  text-shadow: 0 0 5px #6c28bb;
+  animation: title-enter 2s ease-out forwards;
+}
+
+@keyframes title-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        text-shadow:
+          0 2px 4px rgba(77, 209, 255, 0.6),
+          -3px 8px 12px rgba(77, 209, 255, 0.45),
+          3px 8px 12px rgba(77, 209, 255, 0.45),
+          0 16px 28px rgba(77, 209, 255, 0.3);
+    }
 }
 
 /* ----- Volume ------ */
