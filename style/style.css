@@ -658,13 +658,36 @@ h2 {
   margin: 10px 0;
 }
 
+#end-screen p:last-of-type{
+  margin-bottom: 30px;
+}
+
 #end-screen h2 {
   margin-bottom: 20px;
 }
 
 #restart-button {
-  background-color: #90ede7;
+  background-color: #1ca39a;
+  color: #5efff4;
+  border: 2px solid #5efff4;
   margin-right: 10px;
+  border-radius: 8px;
+  box-shadow:
+    0 0 5px #5efff4,
+    0 0 10px #5efff4,
+    0 0 20px #5efff4;
+  transition:
+    box-shadow 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+#restart-button:hover {
+  box-shadow:
+    0 0 8px #5efff4,
+    0 0 16px #5efff4,
+    0 0 20px #5efff4,
+    0 0 30px #5efff4;
+  text-shadow: 0 0 5px #5efff4;
 }
 
 /* ------ Score screen ------- */
