@@ -31,6 +31,10 @@ button {
 h2 {
   font-size: 5rem;
   margin-top: 0px;
+
+}
+
+.game-name{
   text-shadow: 0 0 5px #6c28bb;
   animation: title-enter 2s ease-out forwards;
 }
@@ -121,10 +125,12 @@ h2 {
     0 0 20px #2db934;
   transition:
     box-shadow 0.3s ease,
-    text-shadow 0.3s ease;
+    text-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 #choose-difficulty button[difficulty="easy"]:hover {
+  transform: scale(1.05);
   box-shadow:
     0 0 8px #2db934,
     0 0 16px #2db934,
@@ -142,10 +148,12 @@ h2 {
     0 0 20px #c08008;
   transition:
     box-shadow 0.3s ease,
-    text-shadow 0.3s ease;
+    text-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 #choose-difficulty button[difficulty="medium"]:hover {
+  transform: scale(1.05);
   box-shadow:
     0 0 8px #c08008,
     0 0 16px #c08008,
@@ -163,10 +171,12 @@ h2 {
     0 0 20px #bb1313;
   transition:
     box-shadow 0.3s ease,
-    text-shadow 0.3s ease;
+    text-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 #choose-difficulty button[difficulty="hard"]:hover {
+  transform: scale(1.05);
   box-shadow:
     0 0 8px #bb1313,
     0 0 16px #bb1313,
@@ -184,10 +194,12 @@ h2 {
     0 0 20px #6c28bb;
   transition:
     box-shadow 0.3s ease,
-    text-shadow 0.3s ease;
+    text-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 #choose-difficulty button[difficulty="custom"]:hover {
+  transform: scale(1.05);
   box-shadow:
     0 0 8px #6c28bb,
     0 0 16px #6c28bb,
@@ -227,10 +239,13 @@ h2 {
   border-radius: 10px;
   border: 2px solid #1f51b4;
   background-color: #0f2b64;
-  transition: box-shadow 0.3s ease;
+  transition: 
+    box-shadow 0.3s ease, 
+    transform 0.3s ease;
 }
 
 .saved-difficulties:hover{
+  transform: scale(1.02);
   box-shadow:
     0 0 5px #0ff,
     0 0 10px #0ff,
@@ -306,10 +321,13 @@ h2 {
 #saveCustomDifficulty {
   background: #0f2b64;
   border: 1px solid #2350ac;
-  transition: box-shadow 0.3s ease;
+  transition: 
+    box-shadow 0.3s ease, 
+    transform 0.3s ease;
 }
 
 #saveCustomDifficulty:hover {
+  transform: scale(1.05);
   box-shadow:
     0 0 8px #2350ac,
     0 0 12px #2350ac,
@@ -320,10 +338,13 @@ h2 {
 #playCustomDifficulty {
   background: rgb(22, 102, 102);
   border: 1px solid #26a0a0;
-  transition: box-shadow 0.3s ease;
+  transition: 
+    box-shadow 0.3s ease, 
+    transform 0.3s ease;
 }
 
 #playCustomDifficulty:hover {
+  transform: scale(1.05);
   box-shadow:
     0 0 8px #26a0a0,
     0 0 12px #26a0a0,
@@ -517,10 +538,12 @@ h2 {
     0 0 20px #1a52d4;
   transition:
     box-shadow 0.3s ease,
-    text-shadow 0.3s ease;
+    text-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 #play-button:hover {
+  transform: scale(1.05);
   box-shadow:
     0 0 8px #1a52d4,
     0 0 16px #1a52d4,
@@ -557,10 +580,12 @@ h2 {
     0 0 20px #8557b1;
   transition:
     box-shadow 0.3s ease,
-    text-shadow 0.3s ease;
+    text-shadow 0.3s ease,
+    transform 0.55s ease;
 }
 
 .score-button:hover {
+  transform: scale(1.05);
   box-shadow:
     0 0 8px #8557b1,
     0 0 16px #8557b1,
@@ -576,10 +601,10 @@ h2 {
   justify-content: center;
   align-items: center;
   color: white;
+  min-height: 100vh;
 }
 
 #game-infos {
-  margin-top: 100px;
   margin-bottom: 40px;
 }
 
@@ -744,10 +769,12 @@ h2 {
     0 0 20px #5efff4;
   transition:
     box-shadow 0.3s ease,
-    text-shadow 0.3s ease;
+    text-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 #restart-button:hover {
+  transform: scale(1.05);
   box-shadow:
     0 0 8px #5efff4,
     0 0 16px #5efff4,
@@ -809,10 +836,12 @@ h2 {
     0 0 20px #ab8aff;
   transition:
     box-shadow 0.3s ease,
-    text-shadow 0.3s ease;
+    text-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 .purple-buttons:hover {
+  transform: scale(1.05);
   box-shadow:
     0 0 8px #ab8aff,
     0 0 16px #ab8aff,

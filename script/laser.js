@@ -41,7 +41,7 @@ class Laser {
             this.refreshX();
             this.refreshY(frameIndex);
             this.height = this.frames[frameIndex].height;
-            this.element.style.backgroundImage = `url(../images/${this.frames[frameIndex].src})`;
+            this.element.style.backgroundImage = `url(images/${this.frames[frameIndex].src})`;
             this.element.style.height = `${this.frames[frameIndex].height}px`;
             this.element.style.top = `${(this.y)}px`;
             this.element.style.left = `${this.x}px`;
@@ -51,7 +51,7 @@ class Laser {
             if (frameIndex < this.frames.length) {
                 setTimeout(animateFrame, 100);
             } else {
-                setTimeout(() => this.remove(), 200);
+                // setTimeout(() => this.remove(), 200);
             }
         };
 
