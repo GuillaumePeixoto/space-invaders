@@ -1,3 +1,10 @@
+/*
+
+0 : Empty space
+1 to 5 : Different enemy types (all behave the same)
+
+*/
+
 let formations = [
     // Niveau 1 — losange centré
     [
