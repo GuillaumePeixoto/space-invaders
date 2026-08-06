@@ -207,8 +207,10 @@ function toggleEnableSongs(){
     enableSoundsSong = !enableSoundsSong;
     if(enableSoundsSong){
         toggleSoundSongButton.textContent = "🔊";
+        game.music.volume = SONG_VOLUME;
     }else{
         toggleSoundSongButton.textContent = "🔇";
+        game.music.volume = 0;
     }
 }
 
