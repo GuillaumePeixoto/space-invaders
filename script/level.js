@@ -62,7 +62,7 @@ class Level {
     moveEnemies(step) {
         let hitEdge = false;
 
-        if(enemyZone.offsetWidth + this.offsetX >= gameScreen.offsetWidth){
+        if(enemyZone.offsetWidth + this.offsetX + this.step > gameScreen.offsetWidth){
             this.step = -(this.step);
             hitEdge = true;
         } else if(this.offsetX + this.step < 0){
@@ -72,6 +72,8 @@ class Level {
 
         if (hitEdge && (this.maxDownEnemiesGo === null || (this.maxDownEnemiesGo !== null && this.offsetY + this.stepDown <= this.maxDownEnemiesGo))) {
             this.offsetY += this.stepDown;
+            enemyZone.style.transform = `translateX(${this.offsetX}px) translateY(${this.offsetY}px)`;
+            return;
         }
 
         this.offsetX += this.step;
