@@ -188,7 +188,7 @@ function play(src, effect = true) {
     const audio = new Audio(src);
     audio.volume = effect ? EFFECT_VOLUME : SONG_VOLUME;
     if(!effect){
-        bgMusic.loop = true;
+        audio.loop = true;
     }
     audio.play();
     return audio;

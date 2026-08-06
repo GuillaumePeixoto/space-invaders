@@ -32,7 +32,7 @@ class Game {
         endScreenScore.textContent = this.score;
         endScreenLevel.textContent = this.currentLevelIndex + 1;
         this.music.pause();
-        win ? play('sounds/game_over_sound.mp3') : play('sounds/game_over_sound.mp3') ;
+        win ? play('sounds/you_win.mp3') : play('sounds/game_over_sound.mp3') ;
         Storage.saveScore(this.currentLevelIndex + 1, this.score, difficulty);
     }
 
