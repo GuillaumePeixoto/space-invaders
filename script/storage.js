@@ -15,7 +15,7 @@ class Storage {
             // S'assure que si le JSON parsé n'est pas un objet correct, on garde les fallback
             const data = {
                 scores: Array.isArray(parsed?.scores) ? parsed.scores : [],
-                difficulties: (typeof parsed?.difficulties === 'object' && parsed?.difficulties !== null) ? parsed.difficulties : {}
+                difficulties: (typeof parsed?.difficulties === 'object' && parsed?.difficulties !== null) ? parsed.difficulties : []
             };
 
             // 3. Si un paramètre 'key' est fourni ('scores' ou 'difficulties'), renvoie juste cette valeur
